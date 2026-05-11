@@ -1,44 +1,56 @@
-
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  #scene {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 2rem 1rem; min-height: 540px; position: relative;
-    font-family: var(--font-sans); overflow: hidden;
-  }
-  #message {
-    font-size: 24px; font-weight: 500; color: var(--color-text-primary);
-    text-align: center; min-height: 40px; margin-bottom: 1.5rem;
-    opacity: 0; transform: scale(0.8);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  #message.visible { opacity: 1; transform: scale(1); }
-  #blow-btn {
-    font-size: 16px; padding: 12px 32px; border-radius: 999px;
-    border: 0.5px solid var(--color-border-secondary);
-    background: var(--color-background-primary); color: var(--color-text-primary);
-    cursor: pointer; transition: background 0.2s, transform 0.1s;
-    font-family: var(--font-sans);
-  }
-  #blow-btn:hover { background: var(--color-background-secondary); }
-  #blow-btn:active { transform: scale(0.97); }
-  #blow-btn:disabled { opacity: 0.4; cursor: default; }
-  .cp { position: absolute; pointer-events: none; animation: fall linear forwards; }
-  @keyframes fall {
-    0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
-  }
-</style>
-
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>С днём рождения, мамочка! 🌸</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff8fb;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    #scene {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2.5rem 1rem 2rem; min-height: 540px; position: relative;
+      overflow: hidden; width: 340px;
+    }
+    #message {
+      font-size: 24px; font-weight: 600; color: #c2185b;
+      text-align: center; min-height: 44px; margin-bottom: 1.5rem;
+      opacity: 0; transform: scale(0.8);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #message.visible { opacity: 1; transform: scale(1); }
+    #blow-btn {
+      font-size: 16px; padding: 12px 32px; border-radius: 999px;
+      border: 1.5px solid #f9a8c9;
+      background: #fff; color: #c2185b;
+      cursor: pointer; transition: background 0.2s, transform 0.1s;
+      font-family: inherit; font-weight: 600;
+    }
+    #blow-btn:hover { background: #fce4ec; }
+    #blow-btn:active { transform: scale(0.97); }
+    #blow-btn:disabled { opacity: 0.4; cursor: default; }
+    .cp {
+      position: absolute; pointer-events: none;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(520px) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
 <div id="scene">
   <div id="message">С днём рождения, любимая мамочка! 🌸</div>
 
   <svg width="300" height="280" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
-
-    <!-- Plate -->
     <ellipse cx="150" cy="258" rx="130" ry="11" fill="#E8D5C4" opacity="0.5"/>
-
-    <!-- Bottom tier -->
     <rect x="30" y="168" width="240" height="82" rx="8" fill="#F5C3A2"/>
     <rect x="30" y="163" width="240" height="16" rx="6" fill="#fff" opacity="0.7"/>
     <ellipse cx="62"  cy="168" rx="14" ry="9" fill="#fff" opacity="0.8"/>
@@ -52,8 +64,6 @@
     <circle cx="150" cy="207" r="5" fill="#F472B6"/>
     <circle cx="185" cy="202" r="4" fill="#A78BFA"/>
     <circle cx="225" cy="207" r="5" fill="#F472B6"/>
-
-    <!-- Top tier -->
     <rect x="72" y="96" width="156" height="70" rx="8" fill="#F9A8C0"/>
     <rect x="72" y="91" width="156" height="16" rx="6" fill="#fff" opacity="0.75"/>
     <ellipse cx="92"  cy="96" rx="11" ry="8" fill="#fff" opacity="0.8"/>
@@ -61,51 +71,34 @@
     <ellipse cx="150" cy="97" rx="11" ry="8" fill="#fff" opacity="0.8"/>
     <ellipse cx="178" cy="94" rx="10" ry="7" fill="#fff" opacity="0.8"/>
     <ellipse cx="208" cy="96" rx="10" ry="8" fill="#fff" opacity="0.8"/>
-
-    <!-- Candles: x centers at 103, 133, 163, 197 -->
     <rect x="96"  y="60" width="14" height="33" rx="3" fill="#F472B6"/>
     <rect x="126" y="55" width="14" height="38" rx="3" fill="#A78BFA"/>
     <rect x="156" y="60" width="14" height="33" rx="3" fill="#60A5FA"/>
     <rect x="190" y="57" width="14" height="36" rx="3" fill="#34D399"/>
-
-    <!-- Flames drawn as simple ellipses stacked — no translate tricks -->
-    <!-- Candle tops (wick Y): c1=60, c2=55, c3=60, c4=57 -->
-    <!-- Flame base sits at wick top, extends upward -->
-
-    <!-- Flame 1 — center x=103, base y=60 → center of flame y=60-14=46 -->
     <g id="f1">
       <ellipse cx="103" cy="46" rx="7" ry="14" fill="#FCD34D"/>
       <ellipse cx="103" cy="48" rx="5" ry="10" fill="#FB923C"/>
       <ellipse cx="103" cy="50" rx="2.5" ry="5" fill="#FFF3B0" opacity="0.95"/>
     </g>
-
-    <!-- Flame 2 — center x=133, base y=55 → center y=55-14=41 -->
     <g id="f2">
       <ellipse cx="133" cy="41" rx="7" ry="14" fill="#FCD34D"/>
       <ellipse cx="133" cy="43" rx="5" ry="10" fill="#FB923C"/>
       <ellipse cx="133" cy="45" rx="2.5" ry="5" fill="#FFF3B0" opacity="0.95"/>
     </g>
-
-    <!-- Flame 3 — center x=163, base y=60 → center y=46 -->
     <g id="f3">
       <ellipse cx="163" cy="46" rx="7" ry="14" fill="#FCD34D"/>
       <ellipse cx="163" cy="48" rx="5" ry="10" fill="#FB923C"/>
       <ellipse cx="163" cy="50" rx="2.5" ry="5" fill="#FFF3B0" opacity="0.95"/>
     </g>
-
-    <!-- Flame 4 — center x=197, base y=57 → center y=43 -->
     <g id="f4">
       <ellipse cx="197" cy="43" rx="7" ry="14" fill="#FCD34D"/>
       <ellipse cx="197" cy="45" rx="5" ry="10" fill="#FB923C"/>
       <ellipse cx="197" cy="47" rx="2.5" ry="5" fill="#FFF3B0" opacity="0.95"/>
     </g>
-
-    <!-- Smoke (hidden initially) -->
     <ellipse id="s1" cx="103" cy="46" rx="3" ry="2" fill="#aaa" opacity="0"/>
     <ellipse id="s2" cx="133" cy="41" rx="3" ry="2" fill="#aaa" opacity="0"/>
     <ellipse id="s3" cx="163" cy="46" rx="3" ry="2" fill="#aaa" opacity="0"/>
     <ellipse id="s4" cx="197" cy="43" rx="3" ry="2" fill="#aaa" opacity="0"/>
-
   </svg>
 
   <button id="blow-btn">🎉 Задуть свечи!</button>
@@ -123,10 +116,6 @@
     { id: 'f2', cx: 133, cy: 41 },
     { id: 'f3', cx: 163, cy: 46 },
     { id: 'f4', cx: 197, cy: 43 },
-  ];
-
-  const smokeData = [
-    { id: 's1' }, { id: 's2' }, { id: 's3' }, { id: 's4' }
   ];
 
   function flicker() {
@@ -179,8 +168,8 @@
     });
 
     setTimeout(() => {
-      smokeData.forEach((sd, i) => {
-        const el = document.getElementById(sd.id);
+      ['s1','s2','s3','s4'].forEach(id => {
+        const el = document.getElementById(id);
         let y = parseFloat(el.getAttribute('cy'));
         let op = 0.5;
         el.setAttribute('opacity', op);
@@ -202,3 +191,5 @@
   });
 })();
 </script>
+</body>
+</html>
